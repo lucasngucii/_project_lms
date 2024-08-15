@@ -2,6 +2,7 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './apps/auth/auth.module';
 import { LoggerMiddleware } from './middlewares';
+import { PostgresDbModule } from './common';
 
 @Module({
   imports: [
@@ -9,6 +10,7 @@ import { LoggerMiddleware } from './middlewares';
       isGlobal: true,
     }),
 
+    PostgresDbModule,
     AuthModule,
   ],
   controllers: [],
