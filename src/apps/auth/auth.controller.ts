@@ -12,6 +12,5 @@ export class AuthController {
   @Post('register')
   async register(@Body() body: any) {
     console.log(body);
-    this.customeLog.warn('This is a warning message');
   }
 }
