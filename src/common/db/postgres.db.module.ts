@@ -26,6 +26,7 @@ import { entities } from 'src/entities';
         autoLoadEntities: true,
         synchronize: true,
         entities: entities,
+        migrations: ['dist/migrations/*{.ts,.js}'],
       }),
       inject: [ConfigService],
     }),
