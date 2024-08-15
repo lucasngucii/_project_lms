@@ -25,7 +25,6 @@ export class CustomLogger implements LoggerService, ILogger {
    }
    warn(message: any, context?: string) {
       context = context || this.context;
-      console.log('test')
       this.winstonLogger.log('warn', message, { context });
       this.sendToDiscord('WARN', message, context);
    }
