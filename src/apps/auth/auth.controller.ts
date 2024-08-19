@@ -1,16 +1,16 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { CustomLogger } from 'src/loggers';
+import { Body, Controller, Post, UseFilters } from '@nestjs/common';
+import { HttpExceptionFilter } from 'src/common';
+import { AuthService } from './auth.service';
 
 @Controller('auth')
+@UseFilters(HttpExceptionFilter)
 export class AuthController {
   /**
    *
    */
-  constructor(private customeLog: CustomLogger) {
-    this.customeLog.setContext(AuthController.name);
-  }
+  constructor(private readonly authServices: AuthService) {}
   @Post('register')
   async register(@Body() body: any) {
-    console.log(body);
+    return await this.authServices.register(body);
   }
 }
