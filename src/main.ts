@@ -4,7 +4,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
 import helmet from 'helmet';
-import { HttpExceptionFilter } from './common';
+import { AllExceptionFilter } from './common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,7 +14,7 @@ async function bootstrap() {
       transformOptions: { enableImplicitConversion: true },
     }),
   );
-  app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalFilters(new AllExceptionFilter());
   app.use(helmet());
   app.useGlobalGuards();
   app.enableCors();
