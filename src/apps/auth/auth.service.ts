@@ -1,16 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AccountEntity } from 'src/entities';
-import { BaseRepository } from 'src/repositories/base.repository';
+
+import { AccountRepository } from 'src/repositories/account.repository';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(AccountEntity)
-    private readonly accountRepository: BaseRepository<AccountEntity>,
+    @InjectRepository(AccountRepository)
+    private readonly accountRepository: AccountRepository,
   ) {}
   async register(body: any) {
-    const account = await this.accountRepository.findOneById(body.id);
+    console.log('Registering account...', body.id);
+    const account = await this.accountRepository.findAccountById(body.id);
     return account;
   }
 }
