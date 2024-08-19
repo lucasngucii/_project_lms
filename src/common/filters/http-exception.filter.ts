@@ -18,11 +18,14 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const request = ctx.getRequest<Request>();
     const status = exception.getStatus();
 
-    await this.logger.debug(`Error: ${exception.message}`, exception.stack);
-   response.status(status).json({
+    if (status >= 500) {
+      await this.logger.debug(`Error: ${exception.message}`, exception.stack);
+    }
+
+    response.status(status).json({
       statusCode: status,
       timestamp: new Date().toISOString(),
       path: request.url,
     });
-  } 
+  }
 }
