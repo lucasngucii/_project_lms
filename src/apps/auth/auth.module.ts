@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { CustomLoggerModule } from 'src/loggers';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AccountEntity } from 'src/entities';
+import { AccountRepository } from 'src/repositories/account.repository';
 
 @Module({
   imports: [
@@ -12,7 +13,7 @@ import { AccountEntity } from 'src/entities';
     CustomLoggerModule,
     TypeOrmModule.forFeature([AccountEntity]),
   ],
-  providers: [AuthService],
+  providers: [AuthService, AccountRepository],
   controllers: [AuthController],
 })
 export class AuthModule {}
